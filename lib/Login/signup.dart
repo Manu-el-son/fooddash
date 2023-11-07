@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:fooddash/Login/login.dart';
 //import 'package:passwordfield/passwordfield.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -64,9 +65,66 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   keyboardType: TextInputType.visiblePassword,
                   controller: passContoller,
                   decoration: InputDecoration(
-                      labelText: "Password",
+                    labelText: "Password",
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8)),
+                    suffix: InkWell(
+                      onTap: () {
+                        setState(() {
+                          passToggle = !passToggle;
+                        });
+                      },
+                      child: Icon(passToggle
+                          ? Icons.visibility
+                          : Icons.visibility_off_rounded),
+                    ),
+                  )),
+              SizedBox(height: 20),
+              TextFormField(
+                  style: TextStyle(fontFamily: 'Montserrat'),
+                  keyboardType: TextInputType.visiblePassword,
+                  controller: confirmpassContoller,
+                  decoration: InputDecoration(
+                      labelText: "Confirm Password",
                       border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8)))),
+              SizedBox(
+                height: 20,
+              ),
+              InkWell(
+                onTap: () {},
+                child: Container(
+                  height: 55,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFE60023),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: Center(
+                      child: Text("Register",
+                          style: TextStyle(
+                              fontSize: 20,
+                              fontFamily: 'Montserrat',
+                              fontWeight: FontWeight.w900,
+                              color: Colors.white))),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                const Text("Already have an account?",
+                    style: TextStyle(
+                      fontSize: 14,
+                      fontFamily: 'Urbanist',
+                    )),
+                InkWell(onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => LogInScreen(),
+                      ));
+                })
+              ])
             ],
           )),
         ),
